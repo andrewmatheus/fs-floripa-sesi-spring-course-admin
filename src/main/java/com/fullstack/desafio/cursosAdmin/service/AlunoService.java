@@ -24,6 +24,22 @@ public class AlunoService {
         return null;
     }
 
+    public AlunoModel salvar(Integer id, AlunoModel aluno) throws Exception {
+        if (validarAluno(aluno)) {
+            AlunoModel cadastrado = buscarPorId(id);
+            cadastrado.setNome(aluno.getNome());
+            cadastrado.setDataNascimento(aluno.getDataNascimento());
+
+            return cadastrado;
+        }
+        return null;
+    }
+
+    public boolean excluir(Integer id) throws Exception {
+        AlunoModel aluno = buscarPorId(id);
+        return AlunoModel.excluir(aluno);
+    }
+
     private boolean validarAluno(AlunoModel aluno) throws Exception {
         if (!StringUtils.hasText(aluno.getNome())) {
             throw new Exception("Nome é obrigatório!");

@@ -37,4 +37,9 @@ public class AlunoModel {
         }
         throw new Exception("Aluno não encontrado");
     }
+
+    public static boolean excluir(AlunoModel aluno) {
+        alunos.remove(aluno);
+        return true;
+    }
 }
