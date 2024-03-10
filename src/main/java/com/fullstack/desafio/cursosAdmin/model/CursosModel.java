@@ -37,4 +37,9 @@ public class CursosModel {
         throw new Exception("Curso não encontrado");
     }
 
+    public static boolean excluir(CursosModel curso) {
+        cursos.remove(curso);
+        return true;
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.fullstack.desafio.cursosAdmin.service;
 
+import com.fullstack.desafio.cursosAdmin.model.AlunoModel;
 import com.fullstack.desafio.cursosAdmin.model.CursosModel;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,24 @@ public class CursosService {
         }
         return CursosModel.inserir(curso);
     }
+
+    public CursosModel salvar(Integer id, CursosModel curso) throws Exception {
+        if (validarCurso(curso)) {
+            CursosModel cadastrado = buscarPorId(id);
+            cadastrado.setNome(curso.getNome());
+            cadastrado.setDescricao(curso.getDescricao());
+            cadastrado.setCargaHoraria(curso.getCargaHoraria());
+
+            return cadastrado;
+        }
+        return null;
+    }
+
+    public boolean excluir(Integer id) throws Exception {
+        CursosModel curso = buscarPorId(id);
+        return CursosModel.excluir(curso);
+    }
+
 
     private boolean validarCurso(CursosModel curso) throws Exception {
         if (curso.getNome() == null || curso.getNome().isBlank()) {
