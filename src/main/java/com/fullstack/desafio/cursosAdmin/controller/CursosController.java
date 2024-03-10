@@ -41,4 +41,9 @@ public class CursosController {
         return cursosService.excluir(id);
     }
 
+    @PostMapping("{id}/add-aluno")
+    public CursosModel post(@PathVariable Integer id, @RequestBody AlunoModel aluno) throws Exception {
+        return cursosService.matricular(id, aluno.getId());
+    }
+
 }

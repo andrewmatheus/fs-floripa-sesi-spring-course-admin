@@ -17,6 +17,7 @@ public class CursosModel {
     private String nome;
     private String descricao;
     private Integer cargaHoraria;
+    private List<AlunoModel> alunosMatriculados = new ArrayList<>();
 
     private static Integer getProximoId() {
         return proximoId++;
@@ -40,6 +41,10 @@ public class CursosModel {
     public static boolean excluir(CursosModel curso) {
         cursos.remove(curso);
         return true;
+    }
+
+    public static void matricular(CursosModel curso, AlunoModel aluno){
+        curso.getAlunosMatriculados().add(aluno);
     }
 
 }

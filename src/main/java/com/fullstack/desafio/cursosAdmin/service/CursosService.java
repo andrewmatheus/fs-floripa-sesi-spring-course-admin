@@ -9,6 +9,12 @@ import java.util.List;
 @Service
 public class CursosService {
 
+    private final AlunoService alunoService;
+
+    public CursosService(AlunoService alunoService) {
+        this.alunoService = alunoService;
+    }
+
     public List<CursosModel> buscarTodos() {
         return CursosModel.getCursos();
     }
@@ -41,6 +47,12 @@ public class CursosService {
         return CursosModel.excluir(curso);
     }
 
+    public CursosModel matricular(Integer id, Integer alunoId) throws Exception {
+        CursosModel curso = buscarPorId(id);
+        AlunoModel aluno = alunoService.buscarPorId(alunoId);
+        CursosModel.matricular(curso, aluno);
+        return curso;
+    }
 
     private boolean validarCurso(CursosModel curso) throws Exception {
         if (curso.getNome() == null || curso.getNome().isBlank()) {
